@@ -11,6 +11,7 @@ import { HeroService }        from './hero.service';
     <nav>
       <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
       <a [routerLink]="['/heroes']" routerLinkActive="active">Heroes</a>
+      <a [routerLink]="['/nytimes']" routerLinkActive="active">Ny Times</a>
     </nav>
     <router-outlet></router-outlet>
   `,

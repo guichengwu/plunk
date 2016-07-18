@@ -3,6 +3,7 @@ var router_1 = require('@angular/router');
 var dashboard_component_1 = require('./dashboard.component');
 var heroes_component_1 = require('./heroes.component');
 var hero_detail_component_1 = require('./hero-detail.component');
+var Nytimes_component_1 = require('./Nytimes.component');
 exports.routes = [
     {
         path: '',
@@ -20,6 +21,10 @@ exports.routes = [
     {
         path: 'heroes',
         component: heroes_component_1.HeroesComponent
+    },
+    {
+        path: 'nytimes',
+        component: Nytimes_component_1.NytimesComponent
     }
 ];
 exports.APP_ROUTER_PROVIDERS = [

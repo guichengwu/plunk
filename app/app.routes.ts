@@ -3,6 +3,8 @@ import { provideRouter, RouterConfig }  from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
+import { NytimesComponent } from './Nytimes.component';
+
 
 export const routes: RouterConfig = [
   {
@@ -21,6 +23,10 @@ export const routes: RouterConfig = [
   {
     path: 'heroes',
     component: HeroesComponent
+  }, 
+  {
+    path: 'nytimes',
+    component: NytimesComponent
   }
 ];
 
