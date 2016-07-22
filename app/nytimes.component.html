@@ -3,5 +3,9 @@
     <h3>New York Times Articles</h3>
     <input type="text" />
     <button (click)="searchArticle()">Search Article</button>
-    <p>{{articles}}</p>
+    <ul>
+        <li ngfor="#article of articles">
+            {{article.weburl}}
+        </li>
+    </ul>
 </div>

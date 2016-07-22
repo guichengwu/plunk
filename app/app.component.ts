@@ -8,10 +8,12 @@ import { HeroService }        from './hero.service';
 
   template: `
     <h1>{{title}}</h1>
-    <nav>
-      <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
-      <a [routerLink]="['/heroes']" routerLinkActive="active">Heroes</a>
-      <a [routerLink]="['/nytimes']" routerLinkActive="active">Ny Times</a>
+    <nav id="cbp-hrmenu" class="cbp-hrmenu">
+    <ul>
+      <li><a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a></li>
+      <li><a [routerLink]="['/heroes']" routerLinkActive="active">Heroes</a></li>
+      <li><a [routerLink]="['/nytimes']" routerLinkActive="active">Ny Times</a></li>
+    </ul>
     </nav>
     <router-outlet></router-outlet>
   `,

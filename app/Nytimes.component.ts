@@ -3,7 +3,8 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { Headers, Http, Jsonp, URLSearchParams, JSONP_PROVIDERS } from '@angular/http';
+import { Headers, Http, Jsonp, URLSearchParams, JSONP_PROVIDERS, Response } from '@angular/http';
+import { Article } from './article';
 
 @Component({
     selector: 'nytimes',
@@ -17,6 +18,8 @@ import { Headers, Http, Jsonp, URLSearchParams, JSONP_PROVIDERS } from '@angular
 export class NytimesComponent implements OnInit {
 
     constructor(private jsonp: Jsonp, private http: Http) { }
+
+    articles: Array<Article>;
     
 
 
@@ -26,8 +29,9 @@ export class NytimesComponent implements OnInit {
     ngOnInit() {
 
     }
+    
 
-    public articles;
+
     searchArticle() {
         let url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         let params = new URLSearchParams();
@@ -37,13 +41,19 @@ export class NytimesComponent implements OnInit {
 
         return this.jsonp
             .get(url, {search: params })
-            .map(res => {
-                res.json()
+            .map(responseData => {
+                return responseData.json();
             })
-            .subscribe(data => {
-                this.articles = data;
-                console.info(data);
-                console.log(data);
+            .map((articles: Array<any>) => {
+                let result: Array<Article> = [];
+                if (articles) {
+                    articles.forEach((article) => {
+                        result.push(new Article(article.weburl));
+                    });
+                }
+            })
+            .subscribe(result => {
+                //this.articles = result;
 
             });
 

@@ -13,6 +13,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var article_1 = require('./article');
 var NytimesComponent = (function () {
     function NytimesComponent(jsonp, http) {
         this.jsonp = jsonp;
@@ -21,20 +22,25 @@ var NytimesComponent = (function () {
     NytimesComponent.prototype.ngOnInit = function () {
     };
     NytimesComponent.prototype.searchArticle = function () {
-        var _this = this;
         var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         var params = new http_1.URLSearchParams();
         params.set('api-key', "033a69688a1a4d24ab0ccdd5090da5c6");
         params.set('fq', "blackrock");
         return this.jsonp
             .get(url, { search: params })
-            .map(function (res) {
-            res.json();
+            .map(function (responseData) {
+            return responseData.json();
         })
-            .subscribe(function (data) {
-            _this.articles = data;
-            console.info(data);
-            console.log(data);
+            .map(function (articles) {
+            var result = [];
+            if (articles) {
+                articles.forEach(function (article) {
+                    result.push(new article_1.Article(article.weburl));
+                });
+            }
+        })
+            .subscribe(function (result) {
+            //this.articles = result;
         });
     };
     NytimesComponent = __decorate([
