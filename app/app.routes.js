@@ -4,10 +4,11 @@ var dashboard_component_1 = require('./dashboard.component');
 var heroes_component_1 = require('./heroes.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var Nytimes_component_1 = require('./Nytimes.component');
+var test_component_1 = require('./test.component');
 exports.routes = [
     {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '../test.html',
         pathMatch: 'full'
     },
     {
@@ -25,6 +26,10 @@ exports.routes = [
     {
         path: 'nytimes',
         component: Nytimes_component_1.NytimesComponent
+    },
+    {
+        path: 'test',
+        component: test_component_1.TestComponent
     }
 ];
 exports.APP_ROUTER_PROVIDERS = [

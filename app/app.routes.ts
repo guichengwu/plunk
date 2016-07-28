@@ -4,14 +4,15 @@ import { DashboardComponent } from './dashboard.component';
 import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { NytimesComponent } from './Nytimes.component';
-
+import {TestComponent} from './test.component';
 
 export const routes: RouterConfig = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '../test.html',
     pathMatch: 'full'
   },
+
   {
     path: 'dashboard',
     component: DashboardComponent
@@ -27,6 +28,10 @@ export const routes: RouterConfig = [
   {
     path: 'nytimes',
     component: NytimesComponent
+  },
+  {
+    path: 'test',
+    component: TestComponent
   }
 ];
 

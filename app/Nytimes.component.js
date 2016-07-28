@@ -13,41 +13,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var article_1 = require('./article');
+require('../js/test.js');
 var NytimesComponent = (function () {
     function NytimesComponent(jsonp, http) {
         this.jsonp = jsonp;
         this.http = http;
     }
     NytimesComponent.prototype.ngOnInit = function () {
-    };
-    NytimesComponent.prototype.searchArticle = function () {
-        var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-        var params = new http_1.URLSearchParams();
-        params.set('api-key', "033a69688a1a4d24ab0ccdd5090da5c6");
-        params.set('fq', "blackrock");
-        return this.jsonp
-            .get(url, { search: params })
-            .map(function (responseData) {
-            return responseData.json();
-        })
-            .map(function (articles) {
-            var result = [];
-            if (articles) {
-                articles.forEach(function (article) {
-                    result.push(new article_1.Article(article.weburl));
-                });
-            }
-        })
-            .subscribe(function (result) {
-            //this.articles = result;
+        var dataset = [
+            { label: 'Abulia', count: 10 },
+            { label: 'Betelgeuse', count: 20 },
+            { label: 'Cantaloupe', count: 30 },
+            { label: 'Dijkstra', count: 40 }
+        ];
+        var width = 360;
+        var height = 360;
+        var radius = Math.min(width, height) / 2;
+        var color = d3.scaleOrdinal(d3.schemeCategory20b);
+        var svg = d3.select('#chart')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+            .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+        var arc = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius);
+        var pie = d3.pie()
+            .value(function (d) { return d.count; })
+            .sort(null);
+        var path = svg.selectAll('path')
+            .data(pie(dataset))
+            .enter()
+            .append('path')
+            .attr('d', arc)
+            .attr('fill', function (d, i) {
+            return color(d.data.label);
         });
     };
     NytimesComponent = __decorate([
         core_1.Component({
             selector: 'nytimes',
             templateUrl: 'app/nytimes.component.html',
-            providers: [http_1.JSONP_PROVIDERS]
+            styleUrls: ['../styles.css'],
+            providers: [http_1.JSONP_PROVIDERS],
+            directives: []
         }), 
         __metadata('design:paramtypes', [http_1.Jsonp, http_1.Http])
     ], NytimesComponent);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 
+
 import { Hero }                from './hero';
 import { HeroService }         from './hero.service';
 import { HeroDetailComponent } from './hero-detail.component';
@@ -9,7 +10,7 @@ import { HeroDetailComponent } from './hero-detail.component';
   selector: 'my-heroes',
   templateUrl: 'app/heroes.component.html',
   styleUrls:  ['app/heroes.component.css'],
-  directives: [HeroDetailComponent]
+  directives: []
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
